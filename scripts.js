@@ -8,8 +8,8 @@ function init () {
     
 
     function confirmTakeOff () {
-        let confirmWindow = window.confirm("Confirm that the shuttle is ready for takeoff.");
-            if (confirmWindow) {
+        let confirmTakeOffWindow = window.confirm("Confirm that the shuttle is ready for takeoff.");
+            if (confirmTakeOffWindow) {
                 shuttleBackground.style.backgroundColor = "blue";
                 flightStatus.innerHTML = "Shuttle in flight.";
                 spaceShuttleHeight.innerHTML = "10000";
@@ -30,10 +30,22 @@ function init () {
     let landing = document.getElementById("landing");
     landing.addEventListener("click", shuttleLanding);
 
+    function shuttleAbort () {
+        let confirmAbortWindow = window.confirm("Confirm that you want to abort the mission.");
+            if (confirmAbortWindow) {
+                shuttleBackground.style.backgroundColor = "green"
+                flightStatus.innerHTML = "Mission aborted.";
+                spaceShuttleHeight.innerHTML = "0";                
+            }
+    }
+    let missionAbort = document.getElementById("missionAbort");
+    missionAbort.addEventListener("click", shuttleAbort);
 
 }
 
 window.onload = init;
+
+
 
 
 
