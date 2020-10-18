@@ -38,14 +38,30 @@ function init () {
                 spaceShuttleHeight.innerHTML = "0";                
             }
     }
+
     let missionAbort = document.getElementById("missionAbort");
     missionAbort.addEventListener("click", shuttleAbort);
 
-}
+    let rocket = document.getElementById("rocket");
 
+// FIXME:
+    function move () {
+        rocket.style.left += "10px";
+    }
+
+    let leftButton = document.getElementById("left");
+    leftButton.addEventListener("click", move);
+}
+// bird.style.left += "20px"
 window.onload = init;
 
 
+    
+//
+// When the "Up", "Down", "Right", and "Left" buttons are clicked, the following should happen:
+
+//     The rocket image should move 10 px in the direction of the button that was clicked.
+//     If the "Up" or "Down" buttons were clicked, then the shuttle height should increase or decrease by 10,000 miles.
 
 
 
