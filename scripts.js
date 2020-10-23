@@ -16,12 +16,12 @@ function init () {
             }
     }
 
-    let takeOff = document.getElementById("takeoff");
-    takeOff.addEventListener("click", confirmTakeOff);
+        let takeOff = document.getElementById("takeoff");
+        takeOff.addEventListener("click", confirmTakeOff);
 
 
     function shuttleLanding () {
-        alertLandingWindow = window.alert("The shuttle is landing. Landing gear engaged.")
+        window.alert("The shuttle is landing. Landing gear engaged.");
         shuttleBackground.style.backgroundColor = "green"
         flightStatus.innerHTML = "The shuttle has landed.";
         spaceShuttleHeight.innerHTML = "0";
@@ -43,14 +43,44 @@ function init () {
     missionAbort.addEventListener("click", shuttleAbort);
 
     let rocket = document.getElementById("rocket");
+    let rocketImage = document.getElementById("rocket");
+    rocketImage.style.position = "relative";
+    rocketImage.style.top = '20px';
+    rocketImage.style.left = '20px';
+    rocketImage.style.visibility='visible';
 
-// FIXME:
-    function move () {
-        rocket.style.left += "10px";
-    }
+    const up = document.getElementById('up');
+    const down = document.getElementById('down');
+    const left = document.getElementById('left');
+    const right = document.getElementById('right');
+    let vertPosString = rocketImage.style.top;
+    let vertPos = Number(vertPosString.split('px')[0]);
+    let horizonPosString = rocketImage.style.left;
+    let horiPos = Number(horizonPosString.split('px')[0]);
 
-    let leftButton = document.getElementById("left");
-    leftButton.addEventListener("click", move);
+    up.addEventListener('click', (event) => {
+        if(vertPos > -10) vertPos -= 10;
+        rocketImage.style.top = `${vertPos}px`;
+        spaceShuttleHeight.innerHTML = Number(spaceShuttleHeight.innerHTML) + 10000;
+    });
+
+    down.addEventListener('click', (event) => {
+        if(vertPos < 250) vertPos += 10;
+        rocketImage.style.top = `${vertPos}px`;
+        spaceShuttleHeight.innerHTML = Number(spaceShuttleHeight.innerHTML) - 10000;
+    });
+
+    left.addEventListener('click', (event) => {
+        if(horiPos > -160) horiPos -= 10;
+        rocketImage.style.left = `${horiPos}px`;
+    });
+
+    right.addEventListener('click', (event) => {
+        if(horiPos < 160) horiPos += 10;
+        rocketImage.style.left = `${horiPos}px`;
+    });
+
+
 }
 // bird.style.left += "20px"
 window.onload = init;
